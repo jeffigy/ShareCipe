@@ -1,4 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
+import ButtonTheme from "./components/Button";
 const colors = {
   brand: {
     50: "#ffe6e5",
@@ -17,6 +18,9 @@ const colors = {
 
 const theme = extendTheme({
   colors,
+  components: {
+    Button: ButtonTheme,
+  },
   styles: {
     global: {
       body: {

@@ -1,18 +1,22 @@
-import { Link as RouterLink } from "react-router-dom";
-import { Link } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
 const NotFound = () => {
   return (
-    <div>
-      error 404, the page you are looking is not found{" "}
-      <Link
-        as={RouterLink}
-        to={"/"}
-        color={"blue"}
-        textDecoration={"underline"}
-      >
-        return home
-      </Link>{" "}
-    </div>
+    <Box textAlign="center" py={10} px={6} w={"full"}>
+      <Heading display="inline-block" as="h2" size="2xl" color={"brand.600"}>
+        404
+      </Heading>
+      <Text fontSize="18px" mt={3} mb={2}>
+        Page Not Found
+      </Text>
+      <Text color={"gray.500"} mb={6}>
+        The page you&apos;re looking for does not seem to exist
+      </Text>
+
+      <Button as={Link} to={"/"}>
+        Go to Home
+      </Button>
+    </Box>
   );
 };
 

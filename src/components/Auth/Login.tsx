@@ -1,11 +1,11 @@
 import { Input, Button } from "@chakra-ui/react";
+import PasswordField from "components/PasswordField";
 
 const Login = () => {
   return (
     <>
       <Input placeholder="Email" />
-
-      <Input placeholder="Password" />
+      <PasswordField placeholder="Password" />
       <Button
         size={"sm"}
         textDecoration={"underline"}

@@ -1,12 +1,13 @@
 import { Input, Button } from "@chakra-ui/react";
+import PasswordField from "components/PasswordField";
 
 const Signup = () => {
   return (
     <>
       <Input placeholder="Name" />
       <Input placeholder="Email" />
-      <Input placeholder="Password" />
-      <Input placeholder="Confirm Password" />
+      <PasswordField placeholder="Password" />
+      <PasswordField placeholder="Confirm Password" />
       <Button w={"full"}>Sign Up</Button>
     </>
   );

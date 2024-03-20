@@ -1,7 +1,11 @@
 import { Text, Flex, Container, Input } from "@chakra-ui/react";
 import AuthModal from "components/Auth/AuthModal";
+import ProfileMenu from "components/Auth/ProfileMenu";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [isAuth] = useState<boolean>(false);
+
   return (
     <Flex bg={"bg"} zIndex={1} top={0} position={"fixed"} w={"full"}>
       <Container maxW={"container.xl"}>
@@ -14,7 +18,7 @@ const Navbar = () => {
             placeholder="Search..."
             variant={"unstyle"}
           />
-          <AuthModal />
+          {isAuth ? <ProfileMenu /> : <AuthModal />}
         </Flex>
       </Container>
     </Flex>

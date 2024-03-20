@@ -9,9 +9,15 @@ import React, { MouseEventHandler, useState } from "react";
 
 type PasswordFieldProps = {
   placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const PasswordField: React.FC<PasswordFieldProps> = ({ placeholder }) => {
+const PasswordField: React.FC<PasswordFieldProps> = ({
+  placeholder,
+  value,
+  onChange,
+}) => {
   const [showInput, setShowInput] = useState<boolean>(false);
 
   const toggleShowInput: MouseEventHandler<HTMLButtonElement> = () => {
@@ -19,7 +25,12 @@ const PasswordField: React.FC<PasswordFieldProps> = ({ placeholder }) => {
   };
   return (
     <InputGroup>
-      <Input placeholder={placeholder} type={showInput ? "text" : "password"} />
+      <Input
+        placeholder={placeholder}
+        type={showInput ? "text" : "password"}
+        value={value}
+        onChange={onChange}
+      />
       <InputRightElement>
         <IconButton
           onClick={toggleShowInput}

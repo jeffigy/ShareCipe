@@ -18,7 +18,7 @@ export default Layout;
 const Footer = () => {
   return (
     <Flex h={"56px"} justify={"center"} align={"center"}>
-      © 2023 TasteExchange. All rights reserved
+      © 2024 ShareCipe. All rights reserved
     </Flex>
   );
 };

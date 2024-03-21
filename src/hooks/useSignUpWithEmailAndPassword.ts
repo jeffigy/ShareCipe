@@ -12,12 +12,14 @@ import {
   where,
 } from "firebase/firestore";
 import { RegisterInputs } from "types/Auth";
+import { useNavigate } from "react-router-dom";
 
 const useSignUpWithEmailAndPassword = () => {
   const [createUserWithEmailAndPassword, _user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const showToast = useShowToast();
   const loginUser = useAuthStore((state: any) => state.login);
+  const navigate = useNavigate();
 
   const signup = async (inputs: RegisterInputs) => {
     if (
@@ -37,7 +39,7 @@ const useSignUpWithEmailAndPassword = () => {
 
     const usersRef = collection(firestore, "users");
 
-    const q = query(usersRef, where("username", "==", inputs.username));
+    const q = query(usersRef, where("username", "==", username));
     const querySnapshot = await getDocs(q);
 
     if (!querySnapshot.empty) {
@@ -75,6 +77,8 @@ const useSignUpWithEmailAndPassword = () => {
         localStorage.setItem("user-info", JSON.stringify(userDoc));
 
         loginUser(userDoc);
+
+        navigate(0);
       }
     } catch (error) {
       showToast("Error", (error as Error).message, "error");

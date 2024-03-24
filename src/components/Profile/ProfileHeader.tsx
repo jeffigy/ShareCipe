@@ -9,17 +9,18 @@ import {
 import useAuthStore from "store/authStore";
 import useUserProfileStore from "store/userProfileStore";
 import EditProfile from "./EditProfile";
+import useFollowUser from "hooks/useFollowUser";
 
 const ProfileHeader = () => {
   const { userProfile } = useUserProfileStore();
   const authUser = useAuthStore((state) => state.user);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  //   const { isFollowing, isUpdating, handleFollowUser } = useFollowUser(
-  //     userProfile?.uid
-  //   );
-  const isOwnProfileAndAuth =
+  const { isFollowing, isUpdating, handleFollowUser } = useFollowUser(
+    userProfile!.uid
+  );
+  const visitingOwnProfileAndAuth =
     authUser && authUser.username === userProfile?.username;
-  const isNotOwnProfileAndAuth =
+  const visitingAnotherProfileAndAuth =
     authUser && authUser.username !== userProfile?.username;
 
   return (
@@ -36,8 +37,9 @@ const ProfileHeader = () => {
           border: "10px solid",
           borderColor: "white",
         }}
+        name={userProfile?.fullName}
         size={{ base: "xl", md: "2xl" }}
-        src={authUser?.profilePicURL}
+        src={userProfile?.profilePicURL}
       />
 
       <VStack align={"start"} gap={2} mx={"auto"} flex={1}>
@@ -48,22 +50,24 @@ const ProfileHeader = () => {
           align={"center"}
           w={"full"}
         >
-          <Text fontSize={{ base: "sm", md: "lg" }}>{authUser?.username}</Text>
-          {isOwnProfileAndAuth && (
+          <Text fontSize={{ base: "sm", md: "lg" }}>
+            {userProfile?.username}
+          </Text>
+          {visitingOwnProfileAndAuth && (
             <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
               <Button size={{ base: "xs", md: "sm" }} onClick={onOpen}>
                 Edit Profile
               </Button>
             </Flex>
           )}
-          {isNotOwnProfileAndAuth && (
+          {visitingAnotherProfileAndAuth && (
             <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
               <Button
                 size={{ base: "xs", md: "sm" }}
-                // onClick={handleFollowUser}
-                // isLoading={isUpdating}
+                onClick={handleFollowUser}
+                isLoading={isUpdating}
               >
-                {/* {isFollowing ? "Unfollow" : "Follow"} */} Follow
+                {isFollowing ? "Unfollow" : "Follow"}
               </Button>
             </Flex>
           )}

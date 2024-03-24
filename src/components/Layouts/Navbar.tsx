@@ -7,13 +7,14 @@ import {
   Button,
   Icon,
 } from "@chakra-ui/react";
-import AuthModal from "components/Auth/AuthModal";
-import ProfileMenu from "components/Auth/ProfileMenu";
+import AuthModal from "components/Navbar/AuthModal";
+import ProfileMenu from "components/Navbar/ProfileMenu";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "firebase/FirebaseConfig";
 import Logo from "assets/Logo.svg";
 import { useNavigate } from "react-router-dom";
 import { CiSquarePlus } from "react-icons/ci";
+import CreatePost from "components/Navbar/CreatePost";
 const Navbar = () => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
@@ -34,7 +35,6 @@ const Navbar = () => {
           </Flex>
           <Flex flexGrow={1} maxW={{ base: "500px", md: "600px" }}>
             <Input
-              // display={{ base: "none", sm: "flex" }}
               flexGrow={1}
               onClick={() => navigate("search")}
               mx={"20px"}
@@ -42,13 +42,7 @@ const Navbar = () => {
               placeholder="Search..."
               variant={"unstyle"}
             />
-            <Button
-              display={{ base: "none", md: "inline-flex" }}
-              leftIcon={<Icon as={CiSquarePlus} boxSize={"25px"} />}
-              variant={"ghost"}
-            >
-              Post
-            </Button>
+            {user && !loading && <CreatePost />}
           </Flex>
           {!user && !loading && <AuthModal />}
           {user && !loading && <ProfileMenu />}

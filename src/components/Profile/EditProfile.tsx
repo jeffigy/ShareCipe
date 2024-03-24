@@ -53,7 +53,7 @@ const EditProfile: React.FC<EditProfileProps> = ({ isOpen, onClose }) => {
       <ModalContent>
         <ModalHeader>Edit Profile</ModalHeader>
         <ModalCloseButton />
-        <ModalBody as={Stack} spacing={"10px"}>
+        <ModalBody as={Stack} spacing={"10px"} py={"20px"}>
           <FormControl>
             <Stack as={Center} spacing={"5px"}>
               <Avatar

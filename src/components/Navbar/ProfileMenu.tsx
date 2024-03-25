@@ -130,12 +130,7 @@ const DesktopMenu = () => {
   const { handleLogout } = useLogout();
 
   if (!authUser) {
-    return (
-      <Flex align="center" display={{ base: "none", md: "flex" }}>
-        <SkeletonCircle mr={2} boxSize={"40px"} />
-        <Skeleton height="19px" w={"100px"} borderRadius={"full"} />
-      </Flex>
-    );
+    return <Skeleton height="43px" w={"100px"} borderRadius={"full"} />;
   }
 
   return (

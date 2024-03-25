@@ -1,9 +1,12 @@
+import { CommentType } from "./Comment";
+
 export type Post = {
-  id: string;
-  caption: string;
+  id?: string;
+  title: string;
+  description: string;
   likes: string[];
-  comments: string[];
-  created: number;
-  createdBy: string;
-  imageURL: string;
+  comments: CommentType[];
+  createdAt: number;
+  createdBy: string | undefined;
+  imageURL?: string;
 };

@@ -16,6 +16,7 @@ import {
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
+import useCreatePost from "hooks/useCreatePost";
 import usePreviewImg from "hooks/usePreviewImg";
 import useShowToast from "hooks/useShowToast";
 import { useRef, useState } from "react";
@@ -31,7 +32,7 @@ const CreatePost = () => {
   const imageRef = useRef<HTMLInputElement | null>(null);
   const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
   const showToast = useShowToast();
-  // const { isLoading, handleCreatePost } = useCreatePost();
+  const { isLoading, handleCreatePost } = useCreatePost();
 
   const handlePostCreation = async () => {
     try {
@@ -61,8 +62,18 @@ const CreatePost = () => {
           <ModalHeader>New Post</ModalHeader>
           <ModalCloseButton />
           <ModalBody as={Stack} spacing={"10px"} py={"20px"}>
-            <Input placeholder="Title" />
-            <Textarea placeholder="description" />
+            <Input
+              placeholder="Title"
+              value={inputs.title}
+              onChange={(e) => setinputs({ ...inputs, title: e.target.value })}
+            />
+            <Textarea
+              placeholder="description"
+              value={inputs.description}
+              onChange={(e) =>
+                setinputs({ ...inputs, description: e.target.value })
+              }
+            />
             <Input
               type="file"
               hidden
@@ -98,7 +109,9 @@ const CreatePost = () => {
               </Flex>
             )}
             <Flex justify={"flex-end"}>
-              <Button onClick={onClose}>Post</Button>
+              <Button onClick={handlePostCreation} isLoading={isLoading}>
+                Post
+              </Button>
             </Flex>
           </ModalBody>
         </ModalContent>

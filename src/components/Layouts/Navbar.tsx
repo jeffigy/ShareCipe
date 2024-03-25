@@ -1,22 +1,15 @@
-import {
-  Text,
-  Flex,
-  Container,
-  Input,
-  Image,
-  Button,
-  Icon,
-} from "@chakra-ui/react";
+import { Text, Flex, Container, Input, Image } from "@chakra-ui/react";
 import AuthModal from "components/Navbar/AuthModal";
 import ProfileMenu from "components/Navbar/ProfileMenu";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "firebase/FirebaseConfig";
 import Logo from "assets/Logo.svg";
 import { useNavigate } from "react-router-dom";
-import { CiSquarePlus } from "react-icons/ci";
 import CreatePost from "components/Navbar/CreatePost";
+
 const Navbar = () => {
   const [user, loading] = useAuthState(auth);
+
   const navigate = useNavigate();
   return (
     <Flex bg={"bg"} zIndex={1} top={0} position={"fixed"} w={"full"}>

@@ -19,6 +19,7 @@ import { CiBookmark, CiGrid41 } from "react-icons/ci";
 import useGetUserProfileByUsername from "hooks/useGetUserProfileByUsername";
 import ProfileHeader from "components/Profile/ProfileHeader";
 import { Link as RouterLink } from "react-router-dom";
+import ProfilePosts from "components/Profile/ProfilePosts";
 const Profile = () => {
   const { username } = useParams();
   const { isLoading, userProfile } = useGetUserProfileByUsername(username!);
@@ -65,7 +66,7 @@ const Profile = () => {
           <Divider />
           <TabPanels>
             <TabPanel>
-              <p>one!</p>
+              <ProfilePosts />
             </TabPanel>
             <TabPanel>
               <p>two!</p>

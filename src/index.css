@@ -1,0 +1,8 @@
+::-webkit-scrollbar {
+  width: 10px; /* Adjust the width as needed */
+  height: 10px; /* Adjust the height as needed */
+}
+
+::-webkit-scrollbar-button {
+  display: none; /* Hide the scrollbar arrows */
+}

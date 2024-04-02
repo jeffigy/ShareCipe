@@ -17,15 +17,15 @@ const useFollowUser = (userId: string) => {
     setIsUpdating(true);
     try {
       const currentUserRef = doc(firestore, "users", authUser!.uid);
-      const followOrUnfollowUserRef = doc(firestore, "users", userId);
+      const userToFollowOrUnfollorRef = doc(firestore, "users", userId);
       await updateDoc(currentUserRef, {
         following: isFollowing ? arrayRemove(userId) : arrayUnion(userId),
       });
 
-      await updateDoc(followOrUnfollowUserRef, {
+      await updateDoc(userToFollowOrUnfollorRef, {
         followers: isFollowing
-          ? arrayRemove(authUser!.uid)
-          : arrayUnion(authUser!.uid),
+          ? arrayRemove(authUser?.uid)
+          : arrayUnion(authUser?.uid),
       });
 
       if (isFollowing) {
@@ -33,15 +33,13 @@ const useFollowUser = (userId: string) => {
           ...authUser,
           following: authUser?.following.filter((uid) => uid !== userId),
         });
-
-        if (userProfile) {
+        if (userProfile)
           setUserProfile({
             ...userProfile,
             followers: userProfile.followers.filter(
               (uid) => uid !== authUser?.uid
             ),
           });
-        }
 
         localStorage.setItem(
           "user-info",
@@ -58,12 +56,11 @@ const useFollowUser = (userId: string) => {
           following: [...authUser!.following, userId],
         });
 
-        if (userProfile) {
+        if (userProfile)
           setUserProfile({
             ...userProfile,
-            followers: [...userProfile.followers, authUser?.uid],
+            followers: [...userProfile.followers, authUser!.uid],
           });
-        }
 
         localStorage.setItem(
           "user-info",
@@ -72,7 +69,6 @@ const useFollowUser = (userId: string) => {
             following: [...authUser!.following, userId],
           })
         );
-
         setIsFollowing(true);
       }
     } catch (error) {

@@ -16,7 +16,7 @@ const useUserProfileStore = create<UserProfileStore>((set) => ({
     set((state: any) => ({
       userProfile: {
         ...state.userProfile,
-        posts: [post.id, ...state.userProfile.posts],
+        posts: [...state.userProfile.posts, post.id],
       },
     })),
   deletePost: (postId) =>

@@ -29,7 +29,7 @@ import useUserProfileStore from "store/userProfileStore";
 import { Post } from "types/Post";
 import Details from "./Details";
 import Comment from "./Comment";
-import PostFooter from "./PostFooter";
+import PostFooter from "../Feed/PostFooter";
 import { CommentType } from "types/Comment";
 import { timeAgo } from "utils/timeAgo";
 
@@ -96,15 +96,15 @@ const ProfilePost: React.FC<ProfilePostProps> = ({ post }) => {
         >
           <Flex alignItems={"center"} justifyContent={"center"} gap={50}>
             <Flex>
-              <AiFillHeart size={20} />
-              <Text fontWeight={"bold"} ml={2}>
+              <AiFillHeart size={20} color="white" />
+              <Text fontWeight={"bold"} ml={2} color="white">
                 {post.likes.length}
               </Text>
             </Flex>
 
             <Flex>
-              <FaComment size={20} />
-              <Text fontWeight={"bold"} ml={2}>
+              <FaComment size={20} color="white" />
+              <Text fontWeight={"bold"} ml={2} color="white">
                 {post.comments.length}
               </Text>
             </Flex>

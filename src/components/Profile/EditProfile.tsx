@@ -41,7 +41,6 @@ const EditProfile: React.FC<EditProfileProps> = ({ isOpen, onClose }) => {
     try {
       await editProfile(inputs, selectedFile);
       setSelectedFile(null);
-      onClose();
     } catch (error) {
       showToast("Error", (error as Error).message, "error");
     }

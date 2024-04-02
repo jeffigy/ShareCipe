@@ -1,29 +1,31 @@
 import {
-  useDisclosure,
-  Flex,
-  InputGroup,
   Box,
+  Button,
+  Flex,
   Input,
+  InputGroup,
   InputRightElement,
   Text,
-  Button,
+  useDisclosure,
 } from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
-import useAuthStore from "store/authStore";
+import { useRef, useState } from "react";
+
+import usePostComment from "../../hooks/usePostComment";
+import useAuthStore from "../../store/authStore";
+import useLikePost from "../../hooks/useLikePost";
+import { timeAgo } from "../../utils/timeAgo";
+import CommentsModal from "../Modals/CommentsModal";
+import { DocumentData } from "firebase/firestore";
 import { Post } from "types/Post";
-import { timeAgo } from "utils/timeAgo";
-import { GoHeart, GoHeartFill, GoComment } from "react-icons/go";
-import useLikePost from "hooks/useLikePost";
-import usePostComment from "hooks/usePostComment";
-import CommentsModal from "components/Modals/CommentsModal";
-type PostFooterProps = {
+import { GoComment, GoHeart, GoHeartFill } from "react-icons/go";
+type PostFooterType = {
   post: Post;
   isProfilePage: boolean;
-  creatorProfile?: any;
+  creatorProfile?: DocumentData | null;
 };
-const PostFooter: React.FC<PostFooterProps> = ({
-  isProfilePage,
+const PostFooter: React.FC<PostFooterType> = ({
   post,
+  isProfilePage,
   creatorProfile,
 }) => {
   const { isCommenting, handlePostComment } = usePostComment();
@@ -37,6 +39,7 @@ const PostFooter: React.FC<PostFooterProps> = ({
     await handlePostComment(post.id!, comment);
     setComment("");
   };
+
   return (
     <Box mb={10} marginTop={"auto"}>
       <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={4}>
@@ -105,8 +108,8 @@ const PostFooter: React.FC<PostFooterProps> = ({
             />
             <InputRightElement>
               <Button
-                fontSize={14}
                 variant={"ghost"}
+                size={"sm"}
                 onClick={handleSubmitComment}
                 isLoading={isCommenting}
               >
@@ -119,4 +122,5 @@ const PostFooter: React.FC<PostFooterProps> = ({
     </Box>
   );
 };
+
 export default PostFooter;

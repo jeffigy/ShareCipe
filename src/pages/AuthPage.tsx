@@ -5,7 +5,11 @@ const AuthPage = () => {
   return (
     <Flex minH={"full"} justify={"center"} align={"center"} w={"full"} px={4}>
       <Container maxW={"container.lg"} p={0} w={"full"}>
-        <Flex justify={"center"} align={"center"} gap={"200px"}>
+        <Flex
+          justify={"center"}
+          align={"center"}
+          gap={{ md: "50px", lg: "100px", xl: "150px" }}
+        >
           <Flex
             justify="center"
             direction={"column"}

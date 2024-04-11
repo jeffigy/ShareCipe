@@ -56,7 +56,7 @@ const CreatePost = () => {
         Post
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} blockScrollOnMount={false}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>New Post</ModalHeader>

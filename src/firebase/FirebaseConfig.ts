@@ -4,12 +4,12 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDVTEghs_66_uN4fDGloF-tITIyxZz1TQ0",
-  authDomain: "tastyexchange-52369.firebaseapp.com",
-  projectId: "tastyexchange-52369",
-  storageBucket: "tastyexchange-52369.appspot.com",
-  messagingSenderId: "466612584349",
-  appId: "1:466612584349:web:d8dd5c8673b6484c4bb974",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);

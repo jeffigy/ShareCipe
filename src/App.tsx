@@ -1,20 +1,31 @@
-import Layout from "components/Layouts/Layout";
-import Landing from "pages/Landing";
+import Layout from "components/Layout";
+import { auth } from "firebase/FirebaseConfig";
+import AuthPage from "pages/AuthPage";
+import HomePage from "pages/HomePage";
 import NotFound from "pages/NotFound";
-import Profile from "pages/Profile";
-import Search from "pages/Search";
-import { Routes, Route } from "react-router-dom";
+import ProfilePage from "pages/ProfilePage";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 const App = () => {
+  const [authUser] = useAuthState(auth);
+
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Landing />} />
-        <Route path="search" element={<Search />} />
-        <Route path=":username" element={<Profile />} />
+    <Layout>
+      <Routes>
+        <Route
+          path="/"
+          element={authUser ? <HomePage /> : <Navigate to={"/auth"} />}
+        />
+        <Route
+          path="/auth"
+          element={!authUser ? <AuthPage /> : <Navigate to={"/"} />}
+        />
+
+        <Route path="/:username" element={<ProfilePage />} />
         <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </Layout>
   );
 };
 

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
+
 const NotFound = () => {
   return (
     <Box textAlign="center" py={10} px={6} w={"full"}>
@@ -12,7 +13,6 @@ const NotFound = () => {
       <Text color={"gray.500"} mb={6}>
         The page you&apos;re looking for does not seem to exist
       </Text>
-
       <Button as={Link} to={"/"}>
         Go to Home
       </Button>

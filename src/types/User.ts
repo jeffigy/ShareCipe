@@ -9,5 +9,4 @@ export type User = {
   following: string[];
   uid: string;
   username: string;
-  savedPosts: string[];
 };

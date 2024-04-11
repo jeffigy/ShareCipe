@@ -70,7 +70,6 @@ const useSignUpWithEmailAndPassword = () => {
           following: [],
           posts: [],
           createdAt: Date.now(),
-          savedPosts: [],
         };
 
         await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);

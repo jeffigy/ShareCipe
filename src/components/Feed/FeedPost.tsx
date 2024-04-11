@@ -1,4 +1,4 @@
-import { Box, Card, Image } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import PostFooter from "./PostFooter";
 import PostHeader from "./PostHeader";
 import useGetUserProfileById from "../../hooks/useGetUserProfileById";

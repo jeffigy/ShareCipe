@@ -8,7 +8,6 @@ import {
   Flex,
   Text,
   Button,
-  SkeletonCircle,
   Skeleton,
   Icon,
   useDisclosure,
